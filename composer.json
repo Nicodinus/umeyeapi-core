@@ -1,0 +1,51 @@
+{
+  "name": "nicodinus/umeyeapi-core",
+  "homepage": "https://github.com/Nicodinus/umeyeapi-core",
+  "description": "Reverse engineering of Umeye Api protocol - core library",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nicodinus",
+      "email": "nicodinus@yandex.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Nicodinus\\UmeyeApi\\Core\\": "lib"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Nicodinus\\UmeyeApi\\Core\\Test\\": "test"
+    }
+  },
+  "repositories": [
+    {
+      "type": "github",
+      "url": "https://github.com/Nicodinus/amphp-extensions"
+    }
+  ],
+  "require": {
+    "php": ">=7.4.2",
+    "myclabs/php-enum": "^1.7",
+    "phpinnacle/buffer": "^1.0",
+    "amphp/byte-stream": "^1.7",
+    "amphp/socket": "^1.1",
+    "amphp/sync": "^1.3",
+    "nicodinus/amphp-extensions": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4.2"
+    }
+  },
+  "scripts": {
+    "test": "@php -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
