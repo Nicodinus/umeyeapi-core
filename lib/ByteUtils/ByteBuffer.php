@@ -409,6 +409,28 @@ class ByteBuffer extends LibraryByteBuffer
 
     /** ----------------------------------------------------------------------------------------------------- */
 
+    /**
+     * @param string $hexString
+     * @return static
+     */
+    public static function fromHexString(string $hexString): self
+    {
+        $length = strlen($hexString);
+        if ($length % 2 !== 0) {
+            $hexString = "0" . $hexString;
+        }
+
+        $buffer = new static();
+
+        foreach (str_split($hexString, 2) as $hexByte) {
+
+            $byte = hexdec($hexByte);
+            $buffer->appendUint8($byte);
+
+        }
+
+        return $buffer;
+    }
 
     /**
      * @param int[] $value
@@ -606,5 +628,23 @@ class ByteBuffer extends LibraryByteBuffer
     {
         return (new static())
             ->appendInt8($value);
+    }
+
+    /**
+     * @param static|\PHPinnacle\Buffer\ByteBuffer $buffer1
+     * @param static|\PHPinnacle\Buffer\ByteBuffer $buffer2
+     * @return bool
+     */
+    public static function compareByteSequence(self $buffer1, self $buffer2): bool
+    {
+        if ($buffer1->size() != $buffer2->size())
+            return false;
+
+        foreach ($buffer1 as $index => $byte) {
+            if ($buffer2[$index] != $byte)
+                return false;
+        }
+
+        return true;
     }
 }
